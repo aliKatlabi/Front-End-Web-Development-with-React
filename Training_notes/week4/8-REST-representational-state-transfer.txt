@@ -1,0 +1,59 @@
+
+REST princibles : 
+	- use HTTP methods explicitly
+	- Be stateless 
+		# server does not store any information about the client-server conversation
+	- expose directory structre like URL (uniform directory locator)
+	- formate for data exchange is usually Xml or JSON or both 
+	
+
+REST concepts :
+
+	- NOUNS (resources):
+			- key abstraction of informtion in REST 
+			- conceptual mapping of set of entities 
+				# a resource : is any information that can be named : docs ,images , services , collection of resources, ..
+			- represented with global identifier URI (uniform resource indicator)
+			
+	- VERBS (methods):
+		- represent actions to be perfomed on resources 
+		
+		HTTP GET 	<=> READ	
+		HTTP POST 	<=> CREATE 	
+		HTTP PUT 	<=> UPDATE 
+		HTTP DELETE <=> DELETE
+		
+			- corresponding the CRUD operations 
+		
+		HTTP GET 
+			# wants to obtain the resource
+			# GET request transfer data from server to client 
+		HTTP POST 
+			# create resource
+			# creating new ressource by specifying the needed info's for creation 
+		HTTP PUT
+			# update resource
+			# by sending only partial modification or sending complete representation of resource
+		HTTP DELETE
+			# delete an existing resource
+			
+	- Representations:
+		How data are represented or returned to client 
+		two main representations : XML or JSON 
+		can have multiple representations
+	
+
+Stateless server 
+
+	SERVER SIDE :
+	- server should be stateless (SHOULD NOT track client stete )
+		# every request is new request (fresh with no memory of previous or history reuqests) from client
+	CLIENT SIDE :
+	- client should be responsible for tracking its own state 
+		# using client database , cookies, ...
+		# every request must have enough informatin tht can be used to serve up the requested informatin
+		# client side MVC setup  (helps in this matter)
+
+
+
+

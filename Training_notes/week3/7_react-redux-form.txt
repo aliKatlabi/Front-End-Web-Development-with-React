@@ -1,0 +1,73 @@
+
+first install react-redux-form
+	yarn add react-redux-form@1.16.8
+
+
+in ContactComponent 
+	- remove form related components from react-strap (only Label used)
+	- import {LocalForm, Control, Errors} from 'react-redux-form'
+	
+	NOW : we don't need these:  (because it will be handled by react-redux-form)
+		- state 
+		- handleEventChange()
+		- handleBlur()
+		- validate()
+	
+	- change <Form> into <LocalForm>
+	- since we are not using react-strap component (FromGroup)
+		we go back to use regular react JSX <Row className="form-group">
+		
+	- change the onSubmit value from (onSubmit={this.handleSubmit})
+	
+	to : onSubmit={(vlaue)=>{this.handleSubmit(value)}}
+	
+	- change the input component to <Control.<type> > with className="form-control"
+	FROM:
+	<Input type="text" id="firstname" name="firstname" placeholder="First Name" value={this.state.firstname}
+          valid={errors.firstname ===''}
+          invalid={errors.firstname !==''}
+          onChange={this.handleEventChange}
+          onBlur={this.handleBlur('firstname')}/>
+
+
+
+	TO:	   <Control.text model=".firstname" id="firstname" name="firstname" placeholder="First Name" className="form-control"/>
+	
+	NOTE: ALL (valid, invalid, onChange,...) are handeled by react-redux-form
+	
+	
+	- remove <FormFeedback>
+	- checkbox and select types:  we go back using bootstrap classes 
+	as in checkbox:
+		<div className="form-check">
+			...
+			<Control.checkbox className="form-check-input" ... />
+			...
+		</div>
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

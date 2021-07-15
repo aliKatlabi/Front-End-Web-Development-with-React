@@ -1,0 +1,40 @@
+using the react router we managed to specify pathes as URL
+
+ALSO, URL are able to carry parameters for different usages like:
+	- showing a specific part of webpage (like some dish on click) in different view
+		menu/42 (42 is a route parameter)
+		
+the route parameters are specified in the URL as tokens 
+	menu/:id 
+	(the :id is substituted later with a the value)
+
+.............................. How to implement in react
+
+using <link>
+	<link to{`/menu/${dish.id}`}/>
+	
+Note : enclosing the path is done with back quotes ``
+
+
+.......................................
+
+the Route component passes three props to the component (being rendered)
+	match	 : carries the route parameters inside it as its own properties 
+	location : current location 
+	history  : for going back purposes 
+
+
+....................................... match object
+
+the match object enables us to detemin a path
+it provides information about how <Route path> matched a URL 
+
+this object is provided with property called (params)
+	- params : is key/value 
+	- it is fetched (parsed) for the URL (dynamic part where it has somthing like /:id)
+
+for /menu/:id
+
+match.params.id is 42 for /menu/42
+
+	

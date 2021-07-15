@@ -1,0 +1,53 @@
+KNOW THAT 
+	-any HTML form element state is already tracked by the DOM
+
+instead of writing event handler for every state update , use ref to get form values from DOM
+
+
+..................................HeaderComponent.js
+
+setup a modal to be displayed on top of the page to contain a login form as (uncotrolled form)
+
+after the <Jumbotron> we put the <Modal> which contains:
+	<ModalHeader>
+	<ModalBody> : contains the form (uncotrolled)
+
+for the show/hide effect of the modal we need to "code somthing"
+	- in this.state we add isModalOpen
+	- to toggle the Modal we implement function toggleModal(){...}
+		# to reverse the boolean value of state isModalOpen
+	- in Modal component we setup isOpen and toggle attributes as follows
+		<Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+			# isOpen recieves a boolean value controled by the toggle (whenever is clicked)
+		
+		Also in : <ModalHeader toggle={this.toggleModal}>
+		
+	- NOW : to invoke th Modal we need a BUTTON (add it in a nav bar inside the <Collapse>)
+		
+INSIDE the <Modal> we can put our <Form onSubmit={this.handleLogin}>
+
+	- start putting inputs in <FormGroup> components ( or <FormGroup row>)
+	- add <Button type="submit">
+	- implement the handleLogin function (to handle after submition steps)
+	
+
+
+THE IMPORTANT PART ABOUT UNCONTROLLED 
+
+	in the handleLogin function we can retrieve the username and password and remembr me infos from the DOM it self instead of taking it from the state 
+		handleLogin(event){
+			....
+			dosomthing ( this.username.value )
+		}
+	HOW ?
+		# we need to get the ref (refrences) to the form [BUT,reactstrap uses ref for somethingelse]
+		# in <input> we use the property innerRef this way (to retrieve username for input)
+			innerRef = {(input)=>this.username=input}
+		
+
+
+
+
+
+
+

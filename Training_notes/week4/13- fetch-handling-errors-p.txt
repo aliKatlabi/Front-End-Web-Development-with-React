@@ -1,0 +1,33 @@
+.then(resolve, reject)
+
+resolve : in case we have a response from the server 
+reject : no response 
+
+
+- we handle the error in first response after fetching 
+	using 
+		.then(
+		response=>{
+			if(ok){return response;}
+			else{}
+			}, 
+        error=>{
+            var errmess = new Error(error.message);
+            throw errmess;
+        )
+			
+	this will return the response if the first response (from server) was Ok
+	
+- when error is thrown we have to catch it, and then do some action in react to it by dispatchig 'DishesFailed' with the error message
+
+	chain .catch with fetch .then chain 
+	
+	.catch(error=>{
+		dispatch(DishesFailed(error.message));
+		})
+
+
+ -for comments and promotions we dao the same 
+ 
+ 
+

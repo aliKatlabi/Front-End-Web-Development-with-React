@@ -1,0 +1,117 @@
+.......................................PART1.............................................
+
+we make a contact component 
+
+in the shared folder ..........
+
+	- we make the following files (to contain constant variables)
+		dishes.js 
+		comments.js 
+		leader.js  
+		promotions.js 
+
+in the main component .........
+	- import those constants 
+	- update the state using these constants
+
+	 this.state = {
+		  dishes: DISHES,
+		  comments: COMMENTS,
+		  promotions: PROMOTIONS,
+		  leaders: LEADERS
+		};
+
+we need to show the featured dishes has its property (featured: true)
+
+	- using the filter function on the dishes array (in the main component)
+
+	 const HomePage = () => {
+				  return(
+					  <Home 
+						  dish={this.state.dishes.filter((dish) => dish.featured)[0]}
+						  promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
+						  leader={this.state.leaders.filter((leader) => leader.featured)[0]}
+					  />
+				  );
+				};
+	
+	
+NOW -> the HomeComponent will recieve in the props (dish , promotion, leader) 
+
+in the HomeComponent .........
+
+	- we can now handle those in the HomeComponent by implementing a new component
+		<RenderCard />
+		
+		note: the objects of (dish , promotion, leader) has same properties 
+		except leader has two more properties
+
+		like in case of item.designation where it is null for promotion and dish 
+		we code it differently
+		
+		--> {item.designation?<CardSubtitle>item.designation<CardSubtitle/>:null}
+		this code in JSX 
+
+
+
+.......................................PART2 (Route Parametes)......
+
+in the MenuComponent .....
+
+	we need to update the Card component to pass the dish info as a parameter 
+		- we use the Link component <link>
+			import {link} from "react-router-dom"
+		- enclose each card with a <link to={`..`} > </link> to enable parameter passing 
+		- 'to' property allows to pass the URL 
+		- in the URL we specify the dish using dish.id 
+			Remeber: using back quotes `` inside of {}
+
+	This will provide each Card with a seperate link with different id 
+
+
+	we introduse Breadcrumps 
+		- import BreadCrump , BreadCrumpItem from 'reactstrap'
+		- we add it in a row before the {Menu} row 
+
+
+in the MainComponent ........
+	
+	we want to define a different view for each dish 
+		- we make DishWithId function component as constant	(using arrow function)
+			const DishWithId = (..)=>{..};
+		- we add the <Route > to each dish using dishId identifier
+	Remeber: <Route > components are the way to navigate through pages 
+		
+		- parameters for DishWithId is ({match,location,history}) //for now it is match only
+		- we use the <DishDetail dish={..} comments={..}/> Component we implemented earliar 
+	
+	Passing the dish to DishDetail props 
+		- we want to extract the dishId from match
+	
+	in match we learned there is params property (contains the parameters passed through URL)
+		- match.params.dishid gives the dish [number] (not a string)
+		- convert match.params.dishid :: using parsint() function 
+		- we filter dishes from state (extract the one that is equal to the number passed using match.params.dishid)
+		
+	Passing the comments to DishDetail props 
+		- from this.state.comments we filter the ones that are related to the dish
+
+
+fixing the DishDetailComponent ........
+	
+		- import Link and Breadcrumps
+		- change the props to recieve comments from props immidiatly
+		- 
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+
+	

@@ -1,0 +1,50 @@
+
+promise :  mechanism that supports asynchronous computation
+
+	- gives a promise that the requested value will be delivered in the future or not 
+	- return a proxy object tht we hold on to which gives access to result when it is available 
+	- it is possible that the promise cannot be met and a reject shall be returned 
+	
+	
+			 --------> resolve/fullfil (resolved/fullfiled promise)
+	promise | 
+			 --------> reject (rejected promise)
+
+
+	- the promise ( which is proxy object ) has internally function that deal with both (resolve, reject)
+			
+			new promise(function(resolve , reject){..}
+
+..........................................................................................
+
+return new promise(  function(resolve,reject){..[*]..} );
+
+[*] 
+	{
+		do somthing ...
+		...
+		
+		if(successful){
+			resolve(result);
+		}
+		else{
+			reject(error);
+		}
+	}
+	
+
+
+fetch().then( function(result){..}).catch(function(error){..})
+
+
+
+WHY PROMISES ? 
+
+	- solves callback hell problem (heavily nested callback code)
+	- promises can be chained
+		---.then(function(){
+			---.then(...)	
+		})
+	- can immediatly return :
+		promise.resolve(result)
+		promise.reject(error)

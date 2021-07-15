@@ -1,0 +1,108 @@
+
+modern and more powerful and flexible replacement for XMLHttpRequest()
+it is :
+	- promise based 
+	- provides interface for fetching resources 
+
+fetch abstractions ...........
+
+	request  : object represent resource request
+	response : object represent response to request
+	
+	headers : represent response/request headers 
+		allows to query them and take different actions ( getting the incoming headers or adding to the outgoing ones ) depending on the results 
+	
+	body : provide methods relating to response/request 
+		allows : 
+			- declare content type 
+			- how content should be handled 
+
+
+fetch usages ............
+
+
+fetch( baseURL + 'resource name "dish" ')  // return promise 
+	.then(response=>response.json()) // in then we get access to response object 
+									//one way is to convert to json for easier manipulation
+	.then(data=>console.log(data))	// we can chain .then foro more processing 
+	.catch(error=> handling error) // for error handling 
+	
+
+fetch posting data .........................................
+
+if we want to apply a different HTTP method ( post , delete ...)
+
+we supply second parameter of fetch with a JS object with propeties detailing the method's message content 
+
+
+posting ( for creating new object on the srver )
+
+	fetch( baseURL + 'comments' , {
+					method:'POST',
+					body: JSON.stringfy('NEW comment'),
+					headers:{
+						'Content-type':'application/json'
+						}
+					credintials:'same-origin'	// explained in Node-js course 
+					
+					// can have more propeties
+		})
+
+.......................................................
+
+dealing with erros 
+
+	- remember : promise can deal 
+		with resolve (first parameter (callback function) of .then ) indicating existance of a response 
+		with reject (second parameter (callback function)  of .then ) for problems like not being able to communicate with the server 
+								  
+	- responses status code of HTTP request are in range of  (200 to 299) are successful request
+															 (300 > ) are unsuccessful request
+															 
+	- fetch deal with successful request as 'response.ok' 
+	
+fetch(baseURL + 'dishes').then( response => {
+									if(response.ok){
+										return response; //return it to the next chained then 
+									}
+									else{
+										var error = new Error("error "+ response.status +":"+response.statusText);
+										// explicitly create error 
+										error.response = response;
+										throw error;
+									}
+								},
+								error=>{
+									var errormes = new Error(error.message);
+								}
+						).then(
+							response=>response.json()
+						).then(
+							response=>...
+							
+						).catch(error=>...);
+
+
+...........................................cross-fetch....................................
+
+some browsers don't have fetch built-in , cross-fetch can be used 
+
+	- cross-fetch library provides support for fetch in both node application and browsers
+		using whatwg-fetch pollyfil for browsers with no support for fetch
+		using node-fetch for node application on the server 
+	
+	- to use in application
+		import fetch from 'cross-fetch';
+
+....................................... alternatives ...............
+
+some might feel like fetch is too low level , other libraries to communicate with server 
+
+	- Axios 
+	- Superagent
+
+
+
+	
+	
+	

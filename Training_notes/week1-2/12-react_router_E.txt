@@ -1,0 +1,55 @@
+
+
+installing react router
+	yarn add react-router-dom@4.2.2
+or	npm install react-router-dom@4.2.2 --save
+
+import it into App.js 
+	import { BrowserRouter } from 'react-router-dom';
+	
+surround the <Main/> with  <BrowserRouter>
+
+
+
+we'll make the home component (and use the <BrowserRouter> to navigate between home and main)
+
+
+............. configure the Main component to use the Router 
+
+import { Switch, Route, Redirect } from 'react-router-dom';
+
+make use of the switch and route to specify the url of each component
+
+	 <Switch>
+		<Route path='/home' component={HomePage} />
+		<Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
+		<Redirect to="/home" />
+     </Switch>
+ 
+we have to use the arrow function to pass the Menu component with its props using  
+
+the <Redirect> is used when the URL is matching anything (default route)
+
+
+..............
+Note:
+
+this.toggleNav = this.toggleNav.bind(this);
+
+it means I am binding the function toggleNav() to the variable this.toggleNav
+
+to use it in a component <... onClick={this.toggleNav}/>
+
+
+OR instead use by utilizing the arrow function 
+
+		<... onClick={()=>this.toggleNav()}/>
+
+
+
+
+
+
+
+
+

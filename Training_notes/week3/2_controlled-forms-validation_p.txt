@@ -1,0 +1,41 @@
+ContactComponent.js..................................
+
+we will use FormFeedback component from reactstrap
+	to show error messages from the form to the user 
+
+in this.state
+	we add property touched:{firstname:false, ...} as an object (to keep track when a field is touched)
+WHY??
+	because we only need to start the validation when the user starts to change the field input
+
+now :
+	we create the handleBlue to change the touched state of field (invoked when the field is touched)
+		- we triger it using the event [onBlur] in the input 
+		
+	we create the validate(...) function to create error messages for field that are:
+		touched 
+		fulfilling condition
+
+THE MAIN THING : after figuring an error is to DISPLAY it 
+	using <FormFeedback> after <INPUT>, ..( form inputs )
+
+when the error of the field is empty ==> the input is valid, How to setup this ??
+	using valid , invalid properties in the input and update it accordinly
+		e.g. valid = {errors.firstname==''}
+		
+	in reactstrap,Bootstrap =>valid and invalid makes the form lights green or red 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

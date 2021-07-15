@@ -1,0 +1,48 @@
+
+in reducer.js looking at the initialState
+
+	export const initialState = {
+		dishes: DISHES,
+		comments: COMMENTS,
+		promotions: PROMOTIONS,
+		leaders: LEADERS
+	};
+
+we realize it is obvious that we can split the reducer function into 4 simpler reducers 
+
+we create dishes.js (OR dishesReducer.js) to handle the DISHES substate 
+
+import { DISHES } from '../shared/dishes';
+
+
+		export const Dishes = (state = DISHES,action)=>{
+			
+			switch(action.type){
+					
+				default:
+					state;
+					
+			}
+		}
+
+same for COMMENTS , PROMOTIONS , LEADERS 
+
+
+
+since we created a reducer for each part of the state
+
+	- we can remove reducer.js 
+	- import functions to configuerStore.js  
+
+COMBINING the simpler reducer functions 
+
+	- use the redux method (combineReducers)
+		import {combineReducers} from 'redux'
+	- use the combineReducers({}) as an argument for the createStore()
+	
+
+
+
+
+
+

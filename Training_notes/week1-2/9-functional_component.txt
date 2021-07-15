@@ -1,0 +1,22 @@
+
+we may get a warning of a 'Useless constructor' (where the constructor is unnecessary)
+	so not all components have to be written as a class extending the Component class
+	
+	- this suggests that we can make the component functional 
+	
+converting MenuComponent into funtional :
+	- delete the Useless constructor
+	- we don't need to extend 'Component'
+	- we don't need the 'render' function
+	- we can extract group of elements into its own functional component
+	
+		# like we extracted the Card into RenderMenuItem({dish,onClick})
+		# the extracted card can be used as <RenderMenuItem dish={..} onClick={..}/>
+		
+	- we make the functional component Menu 
+	
+		# using function Menu(props){...}
+		# using arrow function const Menu = (props)=>{...}
+		
+		
+	

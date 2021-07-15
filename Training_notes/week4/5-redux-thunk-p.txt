@@ -1,0 +1,134 @@
+A demo of redux thunk without the use of Asynch API call
+
+
+in configuerStore.js 
+	- we will apply the redux thunk (middleware) and the logger
+		
+		import {applyMiddleware} from 'react-redux';
+		import thunk from 'redux-thunk';
+		import logger from 'redux-logger';
+		
+	- createStore(...,Par2)
+		par1 : is the reducer (or comination of smaller reducers)
+		par2 : takes an enhancer as a second parameter
+			= applyMiddleware(thunk,logger)
+	
+	- applyMiddleware(thunk,logger)
+		takes : multiple middlewares 
+		return : store enhancer 
+	
+in ActionTypes.js 
+	
+	add few more action types 
+	DISHES_LOADING , DISHES_FAILED , ADD_DISHES
+
+in ActionCreators.js 
+
+	we make dishesLoading, dishesFailed and addDishes [action creators]
+	
+		export cosnt dishesLoading = ()=>({type:ActionTypes.DISHES_LOADING});
+		...
+		
+	and we export fetchDishes [thunk]
+	
+		export const fetchDishes = ()=> (dispatch){...}
+		
+	it returns a function that can use the dispatch and the state to dispatch action when needed 
+
+WHERE to handle the Actions we done (the ones related to dishes) ? 
+
+in dishes.js (where the reducer function reside)
+
+	- we handle the actions in the switch(action.Type){..}
+	- change the state parameter to hold more that just DISHES 
+		(state = {isLoading:true,errMsg:null,dishes:[]},action)
+			.........................................................
+			export const Dishes = (state = { isLoading: true,
+				errMess: null,
+				dishes:[]}, action) => {
+				switch (action.type) {
+					case ActionTypes.ADD_DISHES:
+						return {...state, isLoading: false, errMess: null, dishes: action.payload};
+
+					case ActionTypes.DISHES_LOADING:
+						return {...state, isLoading: true, errMess: null, dishes: []}
+
+					case ActionTypes.DISHES_FAILED:
+						return {...state, isLoading: false, errMess: action.payload};
+
+					default:
+						return state;
+				}
+			};
+			...........................................................
+	- in cases of switch statement, for example :
+		case ActionTypes.ADD_DISHES:
+            return {...state, isLoading: false, errMess: null, dishes: action.payload};
+		# we used spread operator (...) , 
+			...state : create new object of the state 
+			
+		# in the return is a merg of fields 
+			the initial state will be spreaded {...state,}
+			what comes after it is considered a modification
+
+
+	- the DISHES_LOADING action type is going to be used when the dishes is still being fetched 
+		# it will be displayed as loading spinner 
+	 SO, we create a loadingComponent.js 
+
+
+create loadingComponent.js 
+
+
+in mainComponent.js 
+
+	- we going to use the loadingComponentjs and thunk we made in ActionCreators.js
+	
+		import {fetchDishes} from '../redux/ActionCreators';
+	
+	AS we did with addComment we do with fetchDishes
+		# fetchDishes is a thunk which uses ( dispatch ) method 
+		SO WE need to map it to props USIG (mapDispatchToProps(){..})
+		AS in 
+			dispatchDishes : dispatch(dispatchDishes())
+	
+	WHEN TO CALL THE dispatchDishes() ? 
+		
+		- when the component is finished mounting  
+			# we use the lifecycle method componentDidMount(){} to call it inside
+	
+	- we pass properties dishesLoading , dishedErrMsh to 
+		<Home> and <DishDetail>
+	
+we want to show the loading effect on the components related to dishes loading 
+
+
+in DishDetailComponent.js 
+
+	- we modify the conditional rendering to return when loading and when errMsg occured 
+		# using the passed props isLoading and errMsg 
+		# and showing the <Loading> when isLoading
+
+
+in HomeComponent.js 
+	- we fix the <RenderCard>
+		# pass isLoading , errMsg to RenderCard as props 
+		# make the RenderCard component able to recieve those props 
+		
+		again we make the card rendering conditional based on the isLoading and errMsg
+	
+in MenuComponent.js 
+
+
+	
+	
+	
+
+
+	
+
+	
+	
+	
+	
+	

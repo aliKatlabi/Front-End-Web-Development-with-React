@@ -1,0 +1,94 @@
+
+Main goal : is to write applications that recognizes the asynchronous nature of communecation ( as newtwork operations may cause unexpected delays)
+
+
+HTTP (hypertext transfer protocol) .........................
+
+	- application layer protocol used for client-server communication 
+	- it is used to retrieve hypertext based documents from the server side ( it can be encoded in one of the standerds , json , xml )
+	- uses actions (verbs) to help talking to the server 
+		HEAD , GET , POST , DELETE , PUT , TRACE, OPTIONS ,CONNECT 
+	
+	
+			| -----------HTTP request message -------->	|		
+			|							 				| 
+	BROWSER	|											| SERVER
+			| <----------HTTP response message----------|
+			
+			
+			
+	HTTP request message : typically is sent from the client to server
+	
+			..............................................
+			request line .................................
+				 contains :   method(GET, POST,..) 
+							  URL  
+							  version (e.g. HTTP/1.1)
+			headers.......................................
+			 contains : 
+					Header filed name : value
+					
+					example :
+						host : localhost:3000
+						connection: keep-alive
+						user-agent: Mozila/5.0
+						accept-encoding: gzip,deflate
+						
+			...............blank line.....................
+			
+			Body..........................................
+				
+				- body contains any data sent from 
+				client to server like form submit
+				data
+				- could be encoded in json or xml
+			..............................................
+			
+	
+	HTTP response message :  the reply that is sent to the client side 
+	
+	
+			..............................................
+			status line ..................................
+				information about how the request was 
+				procesed 
+				 contains :  version (e.g. HTTP/1.1)
+							 status code (200)
+							 OK
+			headers.......................................
+			 contains : 
+					Header filed name : value
+					
+					example :
+						connection: keep-alive
+						content-type: text/html
+						date : ...
+						transfer-encoding:chuncked 
+						
+			...............blank line.....................
+			
+			Body..........................................
+				
+				- body contains data requested like HTML
+				  code for the requested page (index.html)
+			..............................................
+			
+			
+		Status code (main ones): 
+		
+			200: OK			301 : moved permentaly 	400 : bad request	 403 : forbidden    422 : unprocessable entry
+			201: Created 	304 : not modified		404 : not found  		 401 : unauthorized 
+			500: internal server error          	505 : HTTP version not supported 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

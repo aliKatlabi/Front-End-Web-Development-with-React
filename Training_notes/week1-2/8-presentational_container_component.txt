@@ -1,0 +1,36 @@
+Adding a Container Component.....................
+
+
+in the component folder 
+	- create new file MainComponent.js (work as psuedo container component)
+	- we move the work of App.js to that (rename the class to Main)
+	- we let the new Main handle the Dishdetail
+	- we move the state and onselectDish() in Menu component to the Main component
+	
+	- in the Main onClick event on Menu to pass the dishId (not the whole object)
+	
+	- in the App component we only need the Main component (we delete everything else)
+	
+	
+	OUTCOME : we are Making the Main component responsible for the state of the applicatoin
+		  and every function deals with it 
+		  
+		  
+
+Turn Menu Component into a Presentational Component
+
+Open MenuComponent.js and update its contents by 
+	removing the state and removing the DishdetailComponent reference, 
+	and make use of the onClick supplied by MainComponent through the props to deal with the clicking of a menu item:
+
+The DishdetailComponent is already structured as a presentational component and hence needs no further update, except wrapping the return value from render() within a <div> with the className as container.
+
+To print out the date for a comment in a format more suitable for human readability
+	you can update your renderComment function with the code snippet shown below:
+
+
+
+
+
+
+

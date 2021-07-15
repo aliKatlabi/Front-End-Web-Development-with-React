@@ -1,0 +1,93 @@
+
+TO KNOW :
+	- from HTML elements like <input> <textarea> <button> ... hold their own state within the DOM
+	and they update it based on user input 
+	
+SO : we need to connect that into our react components's state, os that any changes to that form element will be reflected on the components state 
+	also, to set initial values for the elements using the state 
+	
+	
+	<form elements state>  |------| component state  
+
+THIS IS DONE: using controlled component
+
+	BY:making the react component control the form it renders. HOW?
+		- single source of truth
+		- tying the form state to the component state
+		- controlled component
+		
+	CHANGING the state needs to be handled using handler function 
+	
+	
+....................................................
+
+ContactComponent.js................
+
+
+we need to create a controlled form (SO we need to save the state of the form)
+	SO: 
+		- change the component into claas extendeing Component 
+		- fill the state so it contain the input initials of the form
+		- The main idea is connecting the form element with the state, HOW?
+		 	 using the value property assigned to the state 
+			 
+			<input ... value={this.state.firstname}/>
+		
+
+	AFTER: making the form with submit button, we need to retrieve the submitted info's
+	
+		- retrieving the information means =>> CHANGING THE STATE
+		- SO =>> we need handler functions 
+			handleEventChange(event){...}
+			handleSubmit(event){...}
+			
+	PROBLEM: trying to insert an input won't be reflected , WHY?
+			- the inputs are connected to the state which is always has empty initial values
+			
+		HOW to solve this and handle the change ?
+			- by making use of the handleEventChange(event) function 
+			- its job is changing the state [[[[ on change ]]]]]
+			
+		WHERE TO LINK THIS FUNCTION ?
+			- in the OnChange property in the form inputs 
+	
+	
+	
+	
+			
+			
+
+NOTES
+	1- 
+
+	<Col md={10}></Col>	equal to <div className="col-md-10"></div>
+
+	more properties for Col: <Col md={{size:6,offset:2}}>
+
+	2- in <Lable ..>
+
+	instead of using for="" we use htmlFor="" , since its JSX ,so there are no contradiction with the Javascript keyword for 
+
+
+	3- event.target 
+		
+		- give us where the event initiated : usually input tags 
+		
+		from event.target we get (properties of the <input>)
+		name , id , type , value .....
+
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

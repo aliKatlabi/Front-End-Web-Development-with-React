@@ -1,0 +1,111 @@
+
+creating our first action (adding the submitted aomment into the list of the comments)
+
+in redux folder : 
+
+create ActionTypes.js 
+
+	- export a const representing the action
+		export const ADD_COMMENT = 'ADD_COMMENT';
+
+create ActionCreator.js
+
+	- import * as ActionTypes from './ActionTypes'
+
+	- we store an arrow function in a const addComment 
+		# takes all data related to a comment 
+		# returns an object {type:ActionTypes.{TYPE} , payload:{} }
+			payload : stores all data related that needs to be sent back
+		
+		import * as ActionTypes from './ActionTypes';
+
+		export const addComment = (dishId, rating, author, comment) => ({
+			type: ActionTypes.ADD_COMMENT,
+			payload: {
+				dishId: dishId,
+				rating: rating,
+				author: author,
+				comment: comment
+			}
+		});
+
+
+the action needs to be send to the reducer in order to change the state 
+	as we know : the reducer now is divided into smaller reducers each handle a part of the state 
+		# comments.js handles the comments part of the state 
+
+so the action that is wrpped inside a function is going to be send to the comments.js
+	
+in redux/comments.js : (comments state reducer function)
+	- we get the comment object from the payload (carries the updated data in a  comment object)
+	- we give an id and date [new properties]
+	- we add the the new comment to the array of comments (immutably)
+		# immutably : means we don't change but create new array (comment state)
+			
+			import { COMMENTS } from '../shared/comments';
+			import * as ActionTypes from './ActionTypes';
+
+			export const Comments = (state = COMMENTS, action) => {
+				switch (action.type) {
+					case ActionTypes.ADD_COMMENT:
+						var comment = action.payload;
+						comment.id = state.length;
+						comment.date = new Date().toISOString();
+						console.log("Comment: ", comment);
+						return state.concat(comment);
+					default:
+					  return state; }	};
+
+
+ 
+
+in mainComponent.js 
+	IDEA is : passing state and dispatched action through props to reach the targeted components 
+	
+	to make the state available in the props chanel we used 
+		mapStateToProps and passed it to connect(mapStateToProps,p2)
+	
+	p2 is used to pass the dispatched actions (like addComment())
+		it passes 
+			dispatch(addComment(p1,p2...))
+	
+	HOW ?
+	 it passes all the dispatched actions by mapping them to the props 
+	
+	SO
+		we make mapDispatchedToProps :(arrow function takes (dispatch) as arg)
+			return (mapping) in this way:
+				{ actionName : (data used)=> dispatch(actionName(data used...))}
+	
+	NOW the actionName is representing the dispatch of the action
+	
+	add to connect(mapStateToProps, mapDispatchedToProps)
+
+			const mapDispatchToProps = (dispatch)=>({
+				addComment:(dishId, rating, author, comment)=>dispatch(addComment(dishId, rating, author, comment))
+			});
+
+	# the function addComment is available now as props 
+
+	we can pass addComment to <DishDetail ... />
+	
+in DishdetailComponent.js 
+	
+	we need to pass the comment related props until it reaches the Comment component where we can make use of it 
+	
+	<RenderComments addComment={props.addComment} dishId={props.dish.id}/>
+	
+	in RenderComments()
+		we pass it to <CommentForm  addComment={props.addComment} dishId={props.dish.id}/>
+	
+	in CommentForm class we make use of the props 
+		handleSubmit(values){
+				this.toggleModale();
+				this.props.addComment(props.dishId, values.rating,values.author,values.comment);
+			}
+		
+	REMEMBER : handleSubmit is trigered from the <LocalForm/>
+	as 
+		<LocalForm onSubmit={(value)=>{this.handleSubmit(value)}}>
+	
+

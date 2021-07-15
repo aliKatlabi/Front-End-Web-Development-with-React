@@ -1,0 +1,23 @@
+
+The Brower DOM is a browser object 
+
+React virtual DOM is a React object 
+	it represent the browser DOM
+	stored in memory as tree data structure of a plane JS objects 
+	extremly fast manipulation comapring the browser DOM
+	created completely from scratch on every setState()
+	
+on changing elements, Reacts will update the  virtual DOM and there will be
+	comparing of last and new version of DOM
+	deciding which parts needs to be rendered 
+	re-rendering those elements
+
+this is done by algorithm called "diffing"
+	- it decides the minimum part of the tree that needs to be changed
+	- it updates the entire sub-tree if the changed element is of a different type from its old version
+	- using "keys" we tell that there is no need to re-render where keys don't change 
+
+A new algorithm is React fiber (faster in performing diffing)
+
+
+

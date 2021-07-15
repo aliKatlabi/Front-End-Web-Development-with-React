@@ -1,0 +1,86 @@
+
+adding the redux and react-redux
+	yarn add redux@3.7.2
+	yarn add react-redux@5.0.7
+	
+in the src folder
+	create a folder named redux 
+	add a file named reducer.js 
+
+in the main component
+	- we move everything updating the state like (DISHES,...) to the reducer.js, because the state will be brought from the redux store.
+	
+	- we remove the state
+
+in reducer.js :
+	we add initialState (contains what state in mainComponent)
+	
+		export const initialState = {
+				dishes: DISHES,
+				comments: COMMENTS,
+				promotions: PROMOTIONS,
+				leaders: LEADERS
+			};
+
+	create the reducer function:
+		- to generate the next state we need current satate and the action
+		- at first calling state is undefined, so we use (JS ES6 function defining property) defaulte argument value
+		
+		- we'll rewrite the reducer function so based on the dispatched action it decides what to return 
+		
+			export const Reducer = (state = initialState, action) => {
+				return state;    
+			};
+in redux folder 
+	create a configureStore.js , in it :
+		- import {createStore} from 'redux'
+		- import {Reducer,initialState} from './reducer'
+		- create ConfigureStore function (exported)
+
+		- this function has to call the createStore(1,2)
+			1- reducer function we created 
+			2- the initial state 
+			returns : the new store 
+
+HOW TO make the store available to all components of the App ? 
+
+in App.js we use the Provider Component 
+	
+	- import {Provider} from 'react-redux'
+	- surround the app with <Provider>..
+	- <Provider> takes one property (store) 
+		<Provider store={store}> which we take it from ConfigureStore function exported from configureStore.js
+
+
+NOW , we are going to CONNECT the application with the redux store 
+	
+	update the mainComponent to connect to redux store 
+		- import {withRouter} from 'react-router-dom'
+		- import {Connect} from 'react-redux'
+		
+	HOW to connect the mainComponent with the redux store?
+		- using connect method on 'main' in the export defaulte
+		- if we want the props to grap the state from the store, we add 'mapStateToProps' argument to connect()
+		- mapStateToProps is function gettign the state and return it as an object 
+		- if using Route, add the connect(..) as argument to withRouter() function 
+	
+	NOW , the state is available as PROPS
+	SO , we update whenever we use this.state... into props...
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	

@@ -1,0 +1,43 @@
+As the index.html of the react app suggests we can edit App.js where all the work is done
+
+
+somthing like this in the react app 
+	<header className='app-header'></header>
+are called elements which are the basic block that builds a component 
+	
+.................................
+
+redering the view to the DOM using (from index.js)
+	ReactDOM.render( 
+	<React.StrictMode> 
+		<App /> 
+	</React.StrictMode>, document.getElementById('root'));
+	
+.................................. JSX
+
+const element = <h1> hello world </h1>;
+
+JSX : 
+	- syntactic extension to the javascript
+	- with it we can represent functions call that gives(evaluate to) objects
+
+
+const element = <h1 className='greeting'> hello world </h1>;
+
+	this is mapped to react functions which return an object
+	
+const element = React.creatElement('h1',{className:'greeting'},'hello world');
+
+	the js object corresponding to this function is 
+
+const element ={type:'h1',
+				props:{className:'greeting',children:'hello world'}};
+
+
+
+
+
+
+
+
+

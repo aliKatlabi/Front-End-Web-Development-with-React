@@ -1,0 +1,20 @@
+
+First use yarn or npm to fetch Font Awesome and Bootstrap-social
+
+	yarn add font-awesome@4.7.0
+	yarn add bootstrap-social@5.1.1
+	
+import into index.js
+
+	import 'font-awesome/css/font-awesome.css';
+	import 'bootstrap-social/bootstrap-social.css';
+
+....... .................
+
+we can use React fragment to group a bunch of react elements (instead of using <div> where it adds a new node into the DOM, while React fragment does not do that)
+
+two froms of it :
+	- <> ... </>
+	- <React.Fragment> ... </React.Fragment>
+	
+	

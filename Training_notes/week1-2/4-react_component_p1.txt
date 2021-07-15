@@ -1,0 +1,109 @@
+
+
+Component : 
+	-returns a group of react element to be shown on the screen
+	-enables us to split the UI into independent, reusable pieces of code 
+	-accepts inputs 
+	-different kind of components can be defined 
+	
+components convention:
+	- user-defined components must start with capital letter 	
+		to be ompiled into React.createElement(..)
+	- tags starting with lower case are treated as DOM tags 
+		this trigers react to use some of the built-in components corresponding with the tags 
+
+
+.................................................. STRUCTURE OF COMPONENT
+
+when making a component we need to follow this :
+
+	- import react and {component} from 'react'
+	- make the component class we are making(like Menu) extend the component class 
+	- adding constructor (with props as argument) 
+		the constructor is constructed using the constructor of component
+		meaning super(props)
+	- adding the render function which RETURN a group of elements (what needs to be displayed)
+	
+	- export the component at the end to import it later 
+		export default Menu; 	(Menu is the name of component)
+	
+.................................................... CODING THE COMPONENT
+
+inside the return now we can code what is equal to the bootstrap in react 
+
+
+ return(
+   <div className='container'>
+    <div className='row'>
+      // Media is reactstrap object
+      // one of its properties is list a boolean property
+      <Media list>
+        {Menu}
+      </Media>
+  </div>
+ );
+	 
+remember : <div> <Media> .. are JSX syntax mapped to react functions that returns an object with properties like className or list depending on the object ....
+
+
+Menu is constant we fill it with list of media tags using js functions 
+
+
+....................................
+
+in the menu list we need to show media display where all have the same properties
+
+SO WE need a place to save these properties 
+
+the best place is in the state property of the component object 
+	
+	this.state ={ ... };
+
+for example we can define a 'dishes' property as a list of objects of dishes available
+
+	this.state ={ 
+		dishes:[ {..},{..} .. //array of object
+		]
+	};
+	
+...............................
+
+to fill the 'Menu' const we use array technics (like, map) on the dishes array
+
+		const Menu = this.state.dishes.map((dish)=>{
+		
+		//for every dish we return the specific layout we need to display
+		
+			return(
+				// it is always a good idea to identify each dish or div tag with a unique
+				// key in oreder distinguish it from others 
+				<div key={dish.id} className='col-12 mt-5'>
+				
+						..... look it at component/MenuComponent
+						
+						// we use {dish.name} {dish.description} ...
+				</div>
+			);
+		})
+	
+	
+This complete the structuring of the menu component
+
+............................................................ HOW TO USE IT
+
+- moving to app.js 
+
+- we import the component we made, by adding :
+
+	import Menu from './components/MenuComponent';
+
+- inside the return of the app rendering we add to a proper place:
+	<Menu /> (self closing tag)
+
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,63 @@
+
+
+in contactComponent.js
+	
+we made a localForm where the state of the form was stored in the component state 
+
+in this exercise, we want to move the state of the form to the application store 
+
+in redux folder 
+	- we make a forms.js and create object InitialFeedback to save the form's state 
+	- we make a reducer out of this object and combine it with the redux store state ,HHHHOW ?	
+		
+		- making the reducer 
+			# using createForm function from 'react-redux-form' to create a reducer 
+			# extend the combineForm function with the create form 
+			
+					    const store = createStore(
+							combineReducers(
+								{
+									dishes:Dishes,
+									promotions:Promotions,
+									comments:Comments,
+									leaders:Leaders,
+									...createForm({feedback:InitialFeedback})
+								}),
+							applyMiddleware(thunk,logger)
+						   );
+		
+		NOTE : the reasone of setting an InitialFeedback is to be able to reset to the inital state of the form when the form is submitted 
+
+		SO : when submitting the form we want to reset the form , WE NEED ACTION FOR THAT 
+		
+in mainComponent.js
+	
+		- to do that , we can use 
+			actions.reset from 'react-redux-form'
+		by adding it to mapDispatchToProps {, resetFeedbackForm: dispatch(actions.reset('feedback'))}
+		
+		- pass resetFeedbackForm to Contact component props 
+
+in ContactComponent.js 
+
+	- we use the passed props ( resetFeedbackForm()) in the handleSubmit() to reset the form after submission 
+	- modify the <localForm> into <Form model="feedback">
+		# model name is the same as we declared to be reset earliar 
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

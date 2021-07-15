@@ -1,0 +1,60 @@
+
+we are going to:
+
+ - remove the deshies instances from the state of the Menu and put it in a file 
+ - lift the state of the Menu to the App component
+ 
+......................
+
+	- we make a subfolder src/shared 
+	- make a file dishes.js to save all information about dishes 
+	- then in the app.js we import the const menu from dishes.js 
+	
+	- make the constructor in app.js then add the (DISHES const,, from dishes.js) to the state
+
+What did we do so far ?  ..... (LIFTING THE STATE UP TO THE App component)
+
+	we made the dishes info's available on a higher level (app.js) ancestor of Menu.js
+
+How to make it available for the 'MenuComponent' component ?
+	we make available in the props of the MenuComponent,How ?
+		(simply by adding dishes={this.state.dishes} to the element <Menu />)
+
+IN OTHER WORDS :
+
+in A component state{ prop:someprop }==> <B prop={this.state.someprop} /> 
+==> B.props.prop (same as A.state.prop)
+
+	- now we can remove the dishes from the state of MenuComponent (since it now recieved from the props argument in the constructor)
+	
+:::::::::::::::::::::::::::::::::::::::
+
+Now we are going to change the layout of the menu list to be shown as Card instead of Media
+
+	- change the import {Media} to {Card,...} from 'react-strap'
+		import { Card, CardImg, CardImgOverlay, CardText, CardBody,CardTitle } from 'reactstrap';
+	- we change the JSX elements accordingly (in the array mapping all dishes & in the render)
+
+Now we want to show the information of the card by clicking on the card :
+
+	- we add the eventhandler (as we learned same as DOM E.H. but with camel case names)
+		<card onClick={()=>this.onDishSelect(dish)}> ..
+	
+	- onDishSelect(dish) :
+		+ it is a MenuComponent function
+		+ it updates the selectedDish state (REMEMBER: changing the state should be done using + setState({selectedDish:dish}) function )
+		+ it deals with each dish while iterating them
+	
+	- Now we need to display the 'dish' description
+		+ we create function renderDish(dish)
+		+ it returns the card in different way (adding description) the usuale rendering in render()
+		+ we need to show the clicked card details, for example we put it in a different row 
+			in the render() function's return 
+		by calling the function renderDish(dish) inside the JSX element using {}
+		
+			{this.renderDish(this.state.selectedDish)}
+		
+
+
+
+

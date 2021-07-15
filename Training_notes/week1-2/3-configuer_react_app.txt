@@ -1,0 +1,74 @@
+
+we want react to work with bootstrap , we type at the prompt
+	yarn add bootstrap@4.0.0
+	
+Then we need to add the connection that enables us to use bootstrap with react 
+	yarn add reactstrap(@5.0.0) react-popper(@0.9.2)
+	
+Note: You can also install the same using npm using the "npm install <package> --save" option if you are using npm instead of yarn..
+
+.................................... Configure to use Bootstrap 4
+
+- Then we need to configuer our react application to make use of bootstrap
+
+we modify the index.js file by adding :
+
+. . .
+import 'bootstrap/dist/css/bootstrap.min.css';
+. . .
+
+
+........................... adding navigation bar 
+
+we import navbar and navbar components from reactstrap in app.js :
+
+	import { Navbar, NavbarBrand } from reactstrap
+	
+we update the app.js to pullin the components needed, for example 
+
+adding:
+
+	<Navbar dark color='praimary'>
+      </Navbar>
+will pull in the navbar component from reactstrap to the application
+
+
+.....................................................
+
+
+import { Navbar, NavbarBrand } from 'reactstrap';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Navbar dark color="primary">
+          <div className="container">
+            <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
+          </div>
+        </Navbar>
+      </div>
+    );
+  }
+}
+
+. . .......
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

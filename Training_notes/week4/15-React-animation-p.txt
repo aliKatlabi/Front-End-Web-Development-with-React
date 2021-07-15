@@ -1,0 +1,107 @@
+
+we will use two animation libraries 
+
+- React-transition-group
+	components :
+	- transition 
+		# describe transition from one component state to another
+		# has those states : entering , entered , exiting ,exited 
+		# USED TO : animate the mounting and unmounting of component
+	- CSSTransition 
+		# applies classes in entr and exit stages 
+		# needs to define 4 CSS classes page-{enter/exit}-{/active}
+		# it uses component property called classNames (not className)
+			as in :<CSSTransition classNames="page" key={this.props.location}/>
+	- TransitionGroup :
+		# manages a set of <Transition> components in a list 
+		# automatically toggles the in prop for the components
+		
+
+- React-animation-component
+	- set of react components implemented using react-transition-group
+	- animation components :
+		fade , Transform , fadeTransform
+	- Wrapper component
+		stagger, Random, Loop 
+		 
+
+----------------------------------------------------------------------------------------
+
+- first we install react-transition-group
+	yarn add react-transition-group
+	
+
+- add CSS classes into App.Css 
+	
+	.page-enter {
+    opacity: 0.01;
+    transform: translateX(-100%);
+	}
+
+	.page-enter-active {
+		opacity: 1;
+		transform: translateX(0%);
+		transition: all 300ms ease-in;
+	}
+
+	.page-exit {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+
+	.page-exit-active {
+		opacity: 0.01;
+		transform: translateX(100%);
+		transition: all 300ms ease-out;
+	}
+
+- to make page transition in effect 
+	- first import 
+		import { TransitionGroup, CSSTransition } from 'react-transition-group';
+	- we wrapp the page navigation ( <Switch>...</Switch>) 
+		with 
+			<TransitionGroup>
+				<CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
+				...
+				<CSSTransition/>
+			<TransitionGroup/>
+
+------------------------------------------------------------------------------------
+
+react-animation-component
+
+- install react-animation-components
+	yarn add react-animation-components
+	
+- import FadeTransform (it lets the component ability to transform and fade )
+
+- wrap some element (<Card> for example)with <FadeTransform> 
+	
+	<FadeTransform in 
+		transformProps={{
+			exitTransform:'scale(0.5) translateY(-50%)'
+	}}>
+		
+	</FadeTransform>
+
+
+	<Stagger in> listt of items </Stagger>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

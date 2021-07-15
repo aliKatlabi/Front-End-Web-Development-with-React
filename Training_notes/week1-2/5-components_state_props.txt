@@ -1,0 +1,85 @@
+............................................................. STATE
+
+state (component class property, declared in the constructor)
+	- the component can store its local info in the state 
+	- it is privte and fully controlled by the component
+	- can be passed to the children by 'props'
+
+# it should be modified only by using this.setState()
+	the change using setState() will be merged into the state of the component
+
+	onDishSelect(dish){
+		this.setState({selectedDish:dish});
+	};
+
+	NEVER DO:
+		this.state.selectedDish=dish;
+
+............................................................. PROPS
+
+props : (the attributes of JSX elements are passed to the components as PROPS)
+	- can pass muiltple attributes to the component
+
+# component attribute
+
+	<Menu dishes= {this.state.dishes}/>
+
+the dishes attribute of Menu component is available as 
+	this.props.dishes
+	
+# muiltple attribute
+
+	<Dishdetail dish={this.state.dish} comments={this.state.comments}
+	HERE, dish and comments properties are available for the Dishdetail comments as	
+		this.props.dish 
+		this.props.comments 
+
+
+............................................................. HANDLING EVENTS
+
+similar as in DOM event handeling, but we do this:
+	- we use camel case for name of events 
+	- we pass function as an event hander
+
+# <Card   onClick={()=>this.onDishSelect(dish)}>
+
+
+
+............................................................. LIFTING UP STATE
+
+the app my be done using a hierarchy of components
+
+	- a case might rise up where two components need to share the state (where any change to the state needs to be seen by both of them) SO, it's better lift the state up in the hierarchy to a commen ancestor
+	
+	
+	
+
+............................................................. LISTS & KEYS
+
+lists in reacts are handled similar in JS 
+
+when we have an array of (objects for example) and we need to convert it to list 
+we can use the arry functions to atirate of it and make it as a list 
+
+const Menu = this.props.dishes.map((dish)=>{
+	return(
+		<div key={dish.id}>
+			<h1>{dish.name}</h1>
+			<p>{dish.description}</P>
+		</div>
+	);
+});
+
+IT IS IMPORTANT TO
+	specify a key when (doing list items in react) , why ?
+	
+	react does partial reredering when items are added or removed BASED ON THE KEYS 
+	
+	
+
+
+
+
+
+
+

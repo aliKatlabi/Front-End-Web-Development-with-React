@@ -1,0 +1,119 @@
+
+
+Redux : 
+	- it is an approach for structuring the react application(even though the redux approach can be used in angular,vue,...)
+	- it can be considered as a realization of the flux architecture
+	- it is a predictable state container (it makes state mutation predictable)
+
+3 Main principles :
+	- single source of truth (single state object tree within a single store)
+		Note: the flux architecture allows multiple stores
+		
+	- the state is read-only (only getter operation are supported in th store)
+		changes should be done through actions only
+		
+	- changes to the state are made with pure functions (in redux terms are reducer functions)
+	
+		- pure functions takes the previous state and specified action => generate and return new state (next state)
+		- this next state is not a modification of the previous state
+		- the previous state will be stored 
+
+Benifits of this approach:(powerful techniques like:)
+	- logging (log the changes)
+	- API handleing 
+	- undo/redo
+	- state persistence 
+	- time-travel debugging
+
+
+
+
+Redux data flow 
+	- uni-directional data flow
+
+
+
+	ACTION ----> DISPATCHER --> REDUCER--> State ---> VIEW 
+		|			|_________________ _____| 		 |
+		|____________________________________________|
+
+
+
+STORE ?
+	DISPATCHER--> REDUCER--> State 
+		/\					   \/
+		|______________________| 
+		
+
+........................................... Redux concepts 
+
+State : stored in plain JS object.
+
+ACTION : JS object (has a type field)	
+		 The type field specifys how to change somthing in the state
+	
+Reducer : pure functions that takes the current state and action and return a new state
+	- update data immutably (immutable object is an object that cannot itself be modified, and only can be changed through generating a new copy )
+
+
+
+
+
+........... Redux STORE 
+
+- Holds the current state value
+- created using creatStore()
+- supplies three methods :
+	- dispatch(): tell how to chang the state, by providing the action object
+	- getState(): return the current stored state
+	- subscribe(): accepts callback functions everytime an action is dispatched 
+
+
+.......... Integrating react with redux
+
+- USING 'react-redux' package 
+
+main method available in this package:
+	- connect()
+		- provide a wrapper container component (around the component in which this applied)
+		- this allows to connect the redux store, meaning state can be obtained in this component
+
+	- connect() takes two optional arguments:
+		- mapStateToProps():
+		# called every time store state changes.
+		# the redux state will be available through the props in the component  
+			
+		- mapDispatchToProps(): 
+			# recieves the dispatch() method and should return an object full of functions that use dispatch()
+			# changes to the state will have to be dispached to the redux store
+			
+HOW to make the store available with the react application?
+	- surround the App root with <Provider>
+	which takes the store as attribute and make the store accessible to all connected component
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+

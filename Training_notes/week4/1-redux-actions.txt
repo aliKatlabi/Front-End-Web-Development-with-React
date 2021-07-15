@@ -1,0 +1,23 @@
+
+Action 
+	- is pack of informations sent from the application to the store (using store.dispatch())
+	- is JS object 
+		# has a type property (type of the Action)
+		# the rest is the necessary data (payload)
+		
+	[you can think of an action as an event that describes something that happened in the application]
+
+to make the actions we can use Action Creators 
+	- functions that returns action objects (to be passed to the store using dispatch())
+	
+Reducer function in Redux 
+	# will take the action and previous state and generate new state 
+	# will use (switch statment) on the action.type 
+
+
+
+SPLITTING REDUCER 
+
+	depending on the shape and fields of state 
+		# reducer can be splitted into simpler functions that deals with some of the fields 
+		# combining the simpler functions to generate the overall state 

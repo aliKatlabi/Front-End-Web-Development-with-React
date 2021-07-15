@@ -1,0 +1,40 @@
+we will use Yarn (package manager .. like npm) usfule in the react world (much better and faster still it is ossible to use npm)
+
+To install Yarn -->  https://yarnpkg.com/en/docs/install
+OR
+	npm install --global yarn
+
+as suggested by the react docs(https://reactjs.org/docs/getting-started.html) we need the create-react-app 
+
+	npm install -g create-react-app
+OR
+	yarn global add create-react-app
+
+at the prompt we can see options
+	create-react-app --help 
+
+- navigate to the project folder to create the app there 
+then per say make react subfolder and move to it . (mkdir react)
+
+.....................................
+
+Generating and Serving a React Project using create-react-app
+
+	create-react-app confusion
+	
+move to the "confusion" folder and run
+	yarn start
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	

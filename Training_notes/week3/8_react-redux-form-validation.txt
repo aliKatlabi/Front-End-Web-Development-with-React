@@ -1,0 +1,63 @@
+
+in ContactComponent.js 
+
+	define fucntions 
+		required(val) : checks value > 0 
+		maxLength(len) : checks the value length is <= len
+		
+			maxLength = (len)=>(val)=>!(val)||(val.length<=len);
+			
+			# returns a function that takes parameter 'val'
+			
+		minLength(len): same ~
+		
+		isNumber : using isNaN()
+		validEmail : regex pattern
+
+NOW in each <Control.(type)> there is a validators attr.
+
+	apply the validators as such :
+		validators={{required,minLength:minLength(3),maxLength:maxLength(15)}}
+
+
+
+	
+	- instead of <FormFeedback> we used earlier 
+		we implace <Errors> from 'react-redux-form' after the Control component
+	
+	 <Errors className="text-danger" model=".firstname" show="touched" 
+            messages={{
+                     required:"Required",
+                     minLength:"must be 3 characters or more",
+                     maxLength:"must be 15 characters or less"
+                     }}
+      />
+	
+		# it will show messages based on the (model)
+		using boolean functions validators
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+
+
+
+
+
+
+

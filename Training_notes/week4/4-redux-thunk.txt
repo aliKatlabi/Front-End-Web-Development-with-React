@@ -1,0 +1,51 @@
+
+redux middleware 
+	- provide the ability to intercept ACTIONs when they are dispatched to the reducer (before reaching), it is helpful for :
+		# third-party extension point 
+		# for things like: logging , async API calls
+
+middleware:
+	- forms a pipline that wraps around dispatch()
+	- forward action
+	- restart the dispatch pipline
+	- also able to access the store state (to read when needed)
+
+
+uses of middleware (it is all about dealing with action):
+	- inspecting the action and state 
+	- modify action 
+	- dispatch other actions 
+	- stop actions from reaching the reducer, etc 
+
+HOW TO SET UP A MIDDLEWARE ?
+	using fucntion from 'redux' applyMddileware()
+		# return : 'store enhancer' that is passed to the createStore()
+
+
+..................... THUNK ...............
+
+Redux Thunk 
+	is a middleware that enables us to make action creators that return a function instead of an action 
+	
+	used to :
+		- delay the dispatch of an action, OR
+		- dispatch based on a condition 
+	( like : stop the action [save into function] do somthing else and then go back and dispatch the action )
+	
+	NOTE: these inner functions recieve getState() and dispatch() store functions
+	
+	dispatch ==[ACTION]==>{redux Thunk}==function==>
+
+
+
+ALSO useful for complex synchronous logic:
+	- muliple dispatches 
+	- conditional dispatches 
+	- simple Async logic 
+	
+	
+	
+	
+
+
+

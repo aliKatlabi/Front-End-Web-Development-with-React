@@ -1,0 +1,28 @@
+
+	- make a directory where the server should be locted 
+	- move to the location
+	- install json-server node module (globally so it can be used anywhere)
+		npm install -g json-server 
+		
+		The json-server also provides a static web server
+			
+	- make a database json file with varity of objects 
+		in our case object's arrays are : dishes , promotions , leaders, feedback
+		
+	- make the server watch the database on some port 
+		json-server --watch db.json -p 3001 -d 2000
+		
+		http://localhost:3001/dishes
+		http://localhost:3001/promotions
+		http://localhost:3001/leaders
+		http://localhost:3001/feedback
+		
+	- also  Any resources that you put in a folder named publicwill be served at:
+		  http://localhost:3001/
+		 
+	- Serving up the Images
+		Create a public folder in your json-server folder.
+		Download the images.zip file that we provide above, unzip it and move the images folder containing the images to the public folder.
+		Restart the json-server as we did before. Now your server will serve up the images for our React app. You can view these images by typing the following into your browser address bar:
+		
+	http://localhost:3001/images/<image name>.png

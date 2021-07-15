@@ -1,0 +1,35 @@
+
+Every class component has a life cycle associated with it 
+
+React component goes through the following life cycle stages:
+	- Mounting
+	- updating (updating the view if needs updating) 
+	- unmounting 
+
+in every stage react provides certain hooks (methods) that can be invoked in each of the stages 
+
+Methods called on component instance creation and insertion into the DOM
+	- constructor()
+	- getDerivedStateFromProps()
+	- render()
+	- componentDidMount () (it will be called after the mounting and render() calling)
+	
+..............................
+
+we can check the invokation of each of these methods by using the :
+	console.log('');
+	
+inside these methods 
+
+..........................................................................................
+..........................................................................................
+
+there is an extension (or standalon app) that can be added to the browser (react devtools)
+	- it supports react developing 
+	- for easier debuging and checking different stages of the react app
+	
+
+
+chrome extension:
+	https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
+

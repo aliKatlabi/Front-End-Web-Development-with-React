@@ -1,0 +1,38 @@
+
+flux arch. : is software engineering pattern 
+
+uni-directional data flow :
+
+ACTION -> DISPATCHER -> STORE -> VIEW 
+
+	- beofre the state were in the main component now , the main component gets its state from a STORE
+	
+	- the SOTRE is the sotre house for the application state 
+	
+	- the only way to changing the application state is by requesting the STORE (where within only can the state be modified)
+	
+	- state setters are no available in the STORE
+	
+	- can only request for changing the state using ACTION through the DISPATCHER 
+	
+	- after the STORE updates its state, it emits the changes 
+	
+	- controller views have access to the getters of the SOTRE (to get the newly upadated state)
+	
+if the view needs to change anything in the sotre, this is the approach :
+
+
+	ACTION -> DISPATCHER -> STORE -> VIEW 
+					|		          |
+				     <- ACTION <------
+							   
+	- the change has to be reflected back to the DISPATCHER as a form of an ACTION		   
+							   
+	- the DISPATCHER becomes the central unit that controls all actions
+
+	
+	
+	
+							   
+							   
+							   
